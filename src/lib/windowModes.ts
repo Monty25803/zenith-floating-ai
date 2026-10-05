@@ -2,7 +2,7 @@ import { LogicalPosition, LogicalSize } from "@tauri-apps/api/dpi";
 import { currentMonitor, getCurrentWindow } from "@tauri-apps/api/window";
 
 export const BUBBLE_SIZE = { width: 64, height: 64 };
-export const PANEL_SIZE = { width: 600, height: 440 };
+export const PANEL_SIZE = { width: 420, height: 560 };
 
 export async function placeBubble() {
   const win = getCurrentWindow();

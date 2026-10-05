@@ -81,7 +81,7 @@ When a newer release is published, Zenith shows an update alert. Click **Update 
 **Layout rules**
 
 1. **Bubble mode** — 64×64 transparent window; icon only (no glow bleed)
-2. **Panel mode** — ~600×440 glass card; drag via header
+2. **Panel mode** — ~420×560 glass card; drag via header
 3. **One job per view** — write → refactor, or settings → save key
 4. **Close / Esc** — always returns to the floating bubble
 

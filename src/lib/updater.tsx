@@ -69,9 +69,13 @@ export function UpdateAlert({ state, onUpdate, onDismiss }: UpdateAlertProps) {
 
   if (state.status === "error") {
     return (
-      <div className="mt-3 p-3 rounded-xl bg-red-950/50 border border-red-800/50 text-xs text-red-100 flex justify-between gap-2 items-start">
+      <div className="zenith-banner zenith-banner--error flex justify-between gap-2 items-start">
         <span>{state.message}</span>
-        <button type="button" onClick={onDismiss} className="underline shrink-0">
+        <button
+          type="button"
+          onClick={onDismiss}
+          className="text-[0.6875rem] font-semibold text-red-200 underline shrink-0"
+        >
           Dismiss
         </button>
       </div>
@@ -80,32 +84,24 @@ export function UpdateAlert({ state, onUpdate, onDismiss }: UpdateAlertProps) {
 
   if (state.status === "downloading") {
     return (
-      <div className="mt-3 p-3 rounded-xl bg-violet-950/50 border border-violet-700/40 text-xs text-violet-100">
-        Downloading Zenith v{state.version}... The app will restart to finish
-        installing.
+      <div className="zenith-card text-[0.75rem] text-violet-100 flex items-center gap-2">
+        <span className="zenith-btn__spinner" aria-hidden />
+        Downloading v{state.version}… App will restart to finish.
       </div>
     );
   }
 
   return (
-    <div className="mt-3 p-3 rounded-xl bg-violet-950/60 border border-violet-600/50 text-xs text-violet-50 flex flex-col gap-2">
+    <div className="zenith-card border-violet-500/30 bg-violet-950/40 text-[0.75rem] text-violet-50 flex flex-col gap-2.5">
       <p>
-        <strong className="text-white">Update available</strong> - Zenith v
-        {state.version} is ready. Install now to get the latest fixes.
+        <strong className="text-white font-semibold">Update available</strong> — Zenith v
+        {state.version} is ready.
       </p>
       <div className="flex gap-2">
-        <button
-          type="button"
-          onClick={onUpdate}
-          className="px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white font-medium"
-        >
+        <button type="button" onClick={onUpdate} className="zenith-btn zenith-btn--primary">
           Update now
         </button>
-        <button
-          type="button"
-          onClick={onDismiss}
-          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200"
-        >
+        <button type="button" onClick={onDismiss} className="zenith-btn zenith-btn--ghost">
           Later
         </button>
       </div>

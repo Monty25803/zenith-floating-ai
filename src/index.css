@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-400: #a78bfa;
+  --color-brand-500: #8b5cf6;
+  --color-brand-600: #7c3aed;
+  --color-brand-700: #6d28d9;
+  --font-sans: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+}
+
 html,
 body,
 #root {
@@ -12,22 +20,58 @@ body,
 }
 
 body {
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: transparent !important;
 }
 
+/* ── Floating bubble ── */
 .zenith-bubble {
   position: relative;
   background: transparent;
   box-shadow: none !important;
   filter: none !important;
-  animation: zenith-float 3.2s ease-in-out infinite;
+}
+
+.zenith-bubble__lift {
+  animation: zenith-float 4s ease-in-out infinite;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.zenith-bubble:hover .zenith-bubble__lift {
+  transform: scale(1.06);
+}
+
+.zenith-bubble:active .zenith-bubble__lift {
+  transform: scale(0.96);
 }
 
 .zenith-bubble img {
   display: block;
   background: transparent;
+}
+
+.zenith-bubble__dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  border: 2px solid rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 8px currentColor;
+}
+
+.zenith-bubble__dot--warn {
+  background: #fbbf24;
+  color: #fbbf24;
+}
+
+.zenith-bubble__dot--update {
+  background: #34d399;
+  color: #34d399;
+  animation: zenith-pulse 2s ease-in-out infinite;
 }
 
 @keyframes zenith-float {
@@ -36,6 +80,308 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
   }
+}
+
+@keyframes zenith-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes zenith-panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes zenith-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Main panel shell ── */
+.zenith-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  color: rgb(241 245 249);
+  user-select: none;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  animation: zenith-panel-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: linear-gradient(
+    155deg,
+    rgba(15, 23, 42, 0.94) 0%,
+    rgba(30, 27, 75, 0.9) 45%,
+    rgba(15, 23, 42, 0.92) 100%
+  );
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  backdrop-filter: blur(20px);
+}
+
+.zenith-panel::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(124, 58, 237, 0.22),
+    transparent 55%
+  );
+}
+
+.zenith-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.zenith-panel__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 0.75rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 0.125rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.45) transparent;
+}
+
+.zenith-panel__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.zenith-panel__body::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+  border-radius: 9999px;
+}
+
+.zenith-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.zenith-brand__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.zenith-brand__tagline {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(196, 181, 253, 0.75);
+}
+
+/* ── Buttons ── */
+.zenith-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    box-shadow 0.15s,
+    transform 0.1s;
+}
+
+.zenith-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.zenith-btn--ghost {
+  color: rgb(148 163 184);
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(71, 85, 105, 0.35);
+}
+
+.zenith-btn--ghost:hover {
+  color: #fff;
+  background: rgba(51, 65, 85, 0.85);
+}
+
+.zenith-btn--primary {
+  color: #fff;
+  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  box-shadow:
+    0 4px 14px rgba(124, 58, 237, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.zenith-btn--primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+}
+
+.zenith-btn--primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.zenith-btn--secondary {
+  color: rgb(226 232 240);
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+}
+
+.zenith-btn--secondary:hover {
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.zenith-btn__spinner {
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: zenith-spin 0.65s linear infinite;
+}
+
+/* ── Fields ── */
+.zenith-field {
+  width: 100%;
+  min-height: 5.5rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: rgb(226 232 240);
+  resize: none;
+  border-radius: 0.875rem;
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(71, 85, 105, 0.45);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.zenith-field::placeholder {
+  color: rgb(100 116 139);
+}
+
+.zenith-field:focus {
+  outline: none;
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.zenith-input {
+  flex: 1;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.8125rem;
+  color: rgb(226 232 240);
+  border-radius: 0.75rem;
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(71, 85, 105, 0.45);
+}
+
+.zenith-input:focus {
+  outline: none;
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.zenith-kbd {
+  display: inline-block;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.625rem;
+  font-family: ui-monospace, monospace;
+  color: rgb(203 213 225);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  border-radius: 0.25rem;
+}
+
+/* ── Cards / alerts ── */
+.zenith-card {
+  padding: 0.875rem 1rem;
+  border-radius: 0.875rem;
+  background: rgba(2, 6, 23, 0.65);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.zenith-output {
+  max-height: 9rem;
+  overflow: auto;
+}
+
+.zenith-output__text {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgb(226 232 240);
+  user-select: text;
+}
+
+.zenith-banner {
+  margin-top: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.zenith-banner--warn {
+  color: rgb(253 230 138);
+  background: rgba(120, 53, 15, 0.35);
+  border: 1px solid rgba(180, 83, 9, 0.35);
+}
+
+.zenith-banner--error {
+  color: rgb(254 202 202);
+  background: rgba(127, 29, 29, 0.35);
+  border: 1px solid rgba(185, 28, 28, 0.4);
+}
+
+.zenith-banner--success {
+  color: rgb(167 243 208);
+}
+
+.zenith-label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(148 163 184);
 }
