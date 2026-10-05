@@ -1,8 +1,8 @@
-import { useRef } from "react";
 import { ZenithMark } from "../brand/ZenithMark";
 
 type PanelHeaderProps = {
   subtitle: string;
+  orbState?: "idle" | "thinking" | "success" | "error";
   onMinimize: () => void;
   onQuit: () => void;
   onCollapseDrag?: () => void;
@@ -12,19 +12,21 @@ type PanelHeaderProps = {
 
 export function PanelHeader({
   subtitle,
+  orbState = "idle",
   onMinimize,
   onQuit,
   onCollapseDrag,
   onSettings,
   onBack,
 }: PanelHeaderProps) {
-  const gripStartY = useRef<number | null>(null);
-
   return (
     <>
       <header className="zenith-header" data-tauri-drag-region>
         <div className="flex items-center gap-3 min-w-0 pointer-events-none">
-          <ZenithMark className="h-10 w-10 shrink-0 shadow-md ring-1 ring-white/10" />
+          <ZenithMark
+            variant="orb"
+            className={`h-10 w-10 shrink-0 zenith-header-orb zenith-header-orb--${orbState}`}
+          />
           <div className="min-w-0">
             <div className="zenith-brand__title">Zenith</div>
             <div className="zenith-brand__tagline truncate">{subtitle}</div>
@@ -67,18 +69,22 @@ export function PanelHeader({
           aria-label="Collapse to bubble"
           onClick={onMinimize}
           onPointerDown={(e) => {
-            e.currentTarget.setPointerCapture(e.pointerId);
-            gripStartY.current = e.clientY;
-          }}
-          onPointerMove={(e) => {
-            if (gripStartY.current == null) return;
-            if (e.clientY - gripStartY.current > 48) {
-              gripStartY.current = null;
-              onCollapseDrag();
-            }
-          }}
-          onPointerUp={() => {
-            gripStartY.current = null;
+            const startY = e.clientY;
+            const el = e.currentTarget;
+            el.setPointerCapture(e.pointerId);
+            const onMove = (ev: PointerEvent) => {
+              if (ev.clientY - startY > 48) {
+                el.releasePointerCapture(e.pointerId);
+                el.removeEventListener("pointermove", onMove);
+                onCollapseDrag();
+              }
+            };
+            el.addEventListener("pointermove", onMove);
+            el.addEventListener(
+              "pointerup",
+              () => el.removeEventListener("pointermove", onMove),
+              { once: true },
+            );
           }}
         >
           <span className="zenith-collapse-grip__bar" />

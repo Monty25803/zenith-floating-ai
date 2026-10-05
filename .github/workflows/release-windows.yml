@@ -2,7 +2,7 @@ name: Release Windows installer
 
 on:
   push:
-    branches: [main]
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
@@ -34,11 +34,15 @@ jobs:
         with:
           workspaces: "./src-tauri -> target"
 
-      - name: Set release version
+      - name: Resolve version
         id: ver
         shell: bash
         run: |
-          VERSION="0.1.${GITHUB_RUN_NUMBER}"
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION="0.1.${GITHUB_RUN_NUMBER}"
+          fi
           node scripts/set-version.mjs "$VERSION"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
@@ -60,9 +64,10 @@ jobs:
 
             Download **Zenith_*_x64-setup.exe** and run it to install.
 
-            After install, Zenith appears as a floating bubble. Click it to open.
+            After install, Zenith appears as a floating orb. Click it to open.
 
-            This build auto-updates from GitHub Releases when a newer version is published.
+            > **Note:** Windows SmartScreen may warn on unsigned installers until Authenticode signing is configured.
+            > Updater signatures (minisign) are still used for in-app updates.
           releaseDraft: false
           prerelease: false
           includeUpdaterJson: true

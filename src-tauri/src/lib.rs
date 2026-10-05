@@ -1,3 +1,7 @@
+mod commands;
+mod credentials;
+mod gemini;
+
 use tauri::{
     menu::{Menu, MenuItem},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
@@ -23,6 +27,17 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_process::init())
+        .manage(commands::RefineGate::default())
+        .invoke_handler(tauri::generate_handler![
+            commands::save_api_key,
+            commands::has_api_key,
+            commands::clear_api_key,
+            commands::masked_api_key,
+            commands::list_models,
+            commands::refine_text,
+            commands::cancel_refine,
+            commands::test_api_key,
+        ])
         .setup(|app| {
             #[cfg(desktop)]
             {
@@ -32,6 +47,26 @@ pub fn run() {
                     tauri_plugin_autostart::MacosLauncher::LaunchAgent,
                     None,
                 ))?;
+                app.handle().plugin(
+                    tauri_plugin_global_shortcut::Builder::new()
+                        .with_handler(|app, _shortcut, event| {
+                            if event.state
+                                == tauri_plugin_global_shortcut::ShortcutState::Pressed
+                            {
+                                if let Some(window) = app.get_webview_window("main") {
+                                    let _ = window.show();
+                                    let _ = window.set_focus();
+                                }
+                                let _ = app.emit("zenith://hotkey-open", ());
+                            }
+                        })
+                        .build(),
+                )?;
+
+                use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut};
+                let default_hotkey =
+                    Shortcut::new(Some(Modifiers::CONTROL | Modifiers::ALT), Code::Space);
+                let _ = app.global_shortcut().register(default_hotkey);
 
                 let show_i = MenuItem::with_id(app, "show", "Show Zenith", true, None::<&str>)?;
                 let quit_i = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;

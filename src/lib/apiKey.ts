@@ -1,23 +1,52 @@
-const STORAGE_KEY = "zenith.geminiApiKey";
+import { invoke } from "@tauri-apps/api/core";
 
-export function getApiKey(): string {
+const LEGACY_STORAGE_KEY = "zenith.geminiApiKey";
+
+/** Migrate plaintext localStorage key into OS credential store, then delete it. */
+export async function migrateLegacyApiKey(): Promise<void> {
   try {
-    return localStorage.getItem(STORAGE_KEY)?.trim() ?? "";
+    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY)?.trim();
+    if (!legacy) return;
+    const already = await hasApiKey();
+    if (!already) {
+      await saveApiKey(legacy);
+    }
+    localStorage.removeItem(LEGACY_STORAGE_KEY);
   } catch {
-    return "";
+    /* ignore migration failures */
   }
 }
 
-export function setApiKey(key: string): void {
-  const value = key.trim();
-  if (!value) {
-    localStorage.removeItem(STORAGE_KEY);
-    return;
+export async function saveApiKey(key: string): Promise<void> {
+  await invoke("save_api_key", { key });
+  try {
+    localStorage.removeItem(LEGACY_STORAGE_KEY);
+  } catch {
+    /* ignore */
   }
-  localStorage.setItem(STORAGE_KEY, value);
 }
 
-export function maskApiKey(key: string): string {
-  if (key.length <= 8) return "••••••••";
-  return `${key.slice(0, 4)}…${key.slice(-4)}`;
+export async function hasApiKey(): Promise<boolean> {
+  return invoke<boolean>("has_api_key");
+}
+
+export async function clearApiKey(): Promise<void> {
+  await invoke("clear_api_key");
+  try {
+    localStorage.removeItem(LEGACY_STORAGE_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+export async function maskedApiKey(): Promise<string | null> {
+  return invoke<string | null>("masked_api_key");
+}
+
+export async function listModels(): Promise<string[]> {
+  return invoke<string[]>("list_models");
+}
+
+export async function testApiKey(): Promise<string> {
+  return invoke<string>("test_api_key");
 }

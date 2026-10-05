@@ -585,3 +585,119 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.zenith-chip {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.55rem;
+  border-radius: 9999px;
+  color: rgb(203 213 225);
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+}
+
+.zenith-chip:hover {
+  color: #fff;
+  border-color: rgba(139, 92, 246, 0.45);
+}
+
+.zenith-chip--on {
+  color: #fff;
+  background: rgba(124, 58, 237, 0.45);
+  border-color: rgba(167, 139, 250, 0.55);
+}
+
+.zenith-toast--ok {
+  color: rgb(167 243 208);
+  background: rgba(6, 78, 59, 0.4);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.zenith-bubble--hover .zenith-bubble__lift,
+.zenith-bubble--thinking .zenith-bubble__lift {
+  transform: scale(1.08);
+}
+
+.zenith-bubble--thinking .zenith-bubble__lift {
+  animation: zenith-think 0.7s ease-in-out infinite;
+}
+
+.zenith-bubble--success .zenith-bubble__lift {
+  animation: zenith-refocus 0.7s ease-out;
+}
+
+.zenith-bubble--error .zenith-bubble__lift {
+  filter: hue-rotate(-40deg) saturate(1.3);
+}
+
+.zenith-header-orb--thinking {
+  animation: zenith-think 0.7s ease-in-out infinite;
+}
+
+.zenith-header-orb--success {
+  animation: zenith-refocus 0.7s ease-out;
+}
+
+.zenith-header-orb--error {
+  filter: hue-rotate(-40deg);
+}
+
+@keyframes zenith-think {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.zenith-panel--enter {
+  animation: zenith-panel-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.zenith-orb-idle-slow .zenith-bubble__lift {
+  animation-duration: 8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zenith-bubble__lift,
+  .zenith-bubble--thinking .zenith-bubble__lift,
+  .zenith-panel,
+  .zenith-panel--enter,
+  .zenith-header-orb--thinking,
+  .zenith-btn__spinner {
+    animation: none !important;
+  }
+}
+
+.zenith-reduce-motion .zenith-bubble__lift,
+.zenith-reduce-motion .zenith-panel,
+.zenith-reduce-motion .zenith-panel--enter,
+.zenith-reduce-motion .zenith-header-orb--thinking,
+.zenith-reduce-motion .zenith-btn__spinner {
+  animation: none !important;
+}
+
+@media (max-width: 640px) {
+  .zenith-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.zenith-btn:focus-visible,
+.zenith-chip:focus-visible,
+.zenith-field:focus-visible,
+.zenith-input:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.8);
+  outline-offset: 2px;
+}
+

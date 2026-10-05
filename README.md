@@ -86,10 +86,13 @@ That’s the whole loop. Minimize (or Esc) to tuck it away as a bubble again.
 | --- | --- |
 | **Floating orb** | Always on top, draggable, position remembered |
 | **Split panel** | Draft left · refined output right |
-| **One-click polish** | Gemini rewrite + auto clipboard · `Ctrl+Enter` |
+| **Tone presets** | Support · Engineering · Email · Slack · Casual · Concise |
+| **Secure key** | Windows Credential Manager · Gemini called from Rust |
+| **One-click polish** | Streaming refine + auto clipboard · `Ctrl+Enter` |
 | **Single instance** | Second launch focuses the existing app — no duplicate orbs |
 | **System tray** | Show / Quit without cluttering the taskbar |
 | **Start with Windows** | Optional autostart from Settings |
+| **History** | Last refinements on-device only |
 | **In-app updates** | Update alerts when a new installer ships |
 | **Lightweight** | Tauri native shell — small footprint vs Electron |
 
@@ -122,11 +125,14 @@ Zenith talks to Google Gemini with **your** API key.
 
 An **amber dot** on the orb means no key is saved yet.
 
-### Privacy
+## Privacy
 
-- The key is stored **only on this device** (local storage).
+- The key is stored in **Windows Credential Manager** (not browser localStorage).
+- Draft text is sent to **Google Gemini** under your API key when you refine.
 - Zenith has **no server** that receives your key or drafts.
 - Treat the key like a password — never commit it. Use **Clear** in Settings anytime.
+
+> **Windows SmartScreen:** until Authenticode / Azure Trusted Signing is configured, Windows may warn on first install. Prefer the official GitHub Release `setup.exe`. In-app updates remain signed with Tauri’s updater key.
 
 ---
 
@@ -176,7 +182,7 @@ npm run icons:all          # refresh OS icons from brand assets
 
 ### Releases (maintainers)
 
-Every push to `main` builds an NSIS `*-setup.exe`, signs updater artifacts, and publishes a GitHub Release with `latest.json`.
+Push a version tag (`v0.1.42`) or run the **Release Windows installer** workflow manually. CI builds NSIS `*-setup.exe`, signs updater artifacts, and publishes a GitHub Release with `latest.json`.
 
 | Secret | Purpose |
 | --- | --- |
