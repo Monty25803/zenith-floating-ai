@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="520" viewBox="0 0 880 520">
+  <rect width="880" height="520" rx="18" fill="#f8fafc"/>
+  <rect width="880" height="56" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="28" y="36" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Google AI Studio</text>
+  <text x="220" y="36" fill="#64748b" font-family="Segoe UI, Arial, sans-serif" font-size="14">aistudio.google.com/apikey</text>
+  <rect x="40" y="90" width="800" height="360" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="70" y="140" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">API keys</text>
+  <text x="70" y="172" fill="#64748b" font-family="Segoe UI, Arial, sans-serif" font-size="14">Create a key to use Gemini from Zenith.</text>
+  <rect x="70" y="200" width="180" height="44" rx="10" fill="#1a73e8"/>
+  <text x="160" y="228" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600">Create API key</text>
+  <rect x="70" y="270" width="740" height="120" rx="12" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="90" y="310" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="14">Your API key</text>
+  <text x="90" y="345" fill="#0f172a" font-family="Consolas, monospace" font-size="16">AIzaSy************************</text>
+  <text x="620" y="345" fill="#1a73e8" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600">Copy</text>
+  <text x="40" y="490" fill="#7C3AED" font-family="Segoe UI, Arial, sans-serif" font-size="14">4. Copy the key - paste into Zenith Settings - Save key</text>
+</svg>

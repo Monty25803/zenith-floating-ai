@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zenith">
+  <rect width="64" height="64" rx="14" fill="#7C3AED"/>
+  <path d="M18 42 L32 28 L46 42" fill="none" stroke="#C4B5FD" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+  <path d="M18 34 L32 20 L46 34" fill="none" stroke="#DDD6FE" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+  <path d="M18 26 L32 12 L46 26" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

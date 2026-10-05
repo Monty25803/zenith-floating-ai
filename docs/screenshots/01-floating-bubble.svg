@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="520" viewBox="0 0 880 520">
+  <defs>
+    <linearGradient id="desk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="880" height="520" rx="18" fill="url(#desk)"/>
+  <text x="40" y="48" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Desktop</text>
+  <rect x="40" y="70" width="800" height="380" rx="12" fill="#111827" stroke="#334155"/>
+  <text x="60" y="110" fill="#64748b" font-family="Segoe UI, Arial, sans-serif" font-size="14">Your apps stay visible - Zenith floats on top</text>
+  <rect x="764" y="384" width="64" height="64" rx="14" fill="#7C3AED"/>
+  <path d="M778 428 L796 410 L814 428" fill="none" stroke="#C4B5FD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+  <path d="M778 418 L796 400 L814 418" fill="none" stroke="#DDD6FE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+  <path d="M778 408 L796 390 L814 408" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="560" y="470" fill="#a78bfa" font-family="Segoe UI, Arial, sans-serif" font-size="14">1. Floating bubble - click to open</text>
+</svg>
