@@ -16,6 +16,8 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+.secrets/
+src-tauri/updater.pubkey
 
 # Generated icon source (rebuilt via npm run icons:all)
 app-icon-source.png

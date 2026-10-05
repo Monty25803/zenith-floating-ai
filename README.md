@@ -37,6 +37,21 @@ Support and engineering work often means juggling tickets, email, and chat. Zeni
 - **In-app API key** — paste, save, clear — no `.env` required for day-to-day use
 - **Resilient AI calls** — retries + model fallbacks when Google is overloaded
 - **Tiny desktop footprint** — Tauri (~15–20 MB class) vs Electron-heavy shells
+- **Windows installer releases** — every push to `main` publishes a `.exe` setup on GitHub Releases
+- **In-app update alerts** — installed apps detect new releases and offer **Update now**
+
+---
+
+## Install (Windows users)
+
+Anyone can install Zenith from the public Releases page — **do not** run a raw binary from a zip.
+
+1. Open **[Releases](https://github.com/Monty25803/zenith-floating-ai/releases/latest)**
+2. Download **`Zenith_*_x64-setup.exe`**
+3. Run the installer (Current User install)
+4. Launch **Zenith** from the Start Menu — a floating bubble appears
+
+When a newer release is published, Zenith shows an update alert. Click **Update now** to download the new setup and restart.
 
 ---
 
@@ -132,9 +147,12 @@ Zenith App/
 │   ├── lib/
 │   │   ├── apiKey.ts           # LocalStorage key helpers
 │   │   ├── gemini.ts           # Model chain + retries
+│   │   ├── updater.tsx         # Update check + alert UI
 │   │   └── windowModes.ts      # Bubble / panel geometry
 │   ├── index.css               # Transparent root + bubble motion
 │   └── main.tsx
+├── .github/workflows/
+│   └── release-windows.yml     # Build + publish setup.exe on push
 ├── src-tauri/
 │   ├── tauri.conf.json         # Overlay window config
 │   ├── capabilities/           # Clipboard, window, opener ACL
@@ -169,16 +187,29 @@ npm run tauri dev
 
 A purple peak bubble appears (typically bottom-right). **Drag** to move · **Click** to open.
 
-### Ship
+### Ship / release (maintainers)
+
+Every push to `main` runs GitHub Actions (`.github/workflows/release-windows.yml`):
+
+1. Bumps version to `0.1.<run_number>`
+2. Builds a Windows **NSIS** installer (`*-setup.exe`)
+3. Signs updater artifacts
+4. Publishes a GitHub Release with `latest.json` for auto-update
+
+Required repo secrets:
+
+| Secret | Purpose |
+|--------|---------|
+| `TAURI_SIGNING_PRIVATE_KEY` | Private key from `npm run tauri signer generate` |
+| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | Key password (empty string if none) |
+
+Local production build (optional):
 
 ```bash
-npm run tauri build
+npm run tauri build -- --bundles nsis
 ```
 
-Installers land in:
-
-- `src-tauri/target/release/bundle/msi/`
-- `src-tauri/target/release/bundle/nsis/`
+Installer output: `src-tauri/target/release/bundle/nsis/`
 
 ### Scripts
 
@@ -253,6 +284,7 @@ An **amber dot** on the bubble means no key is stored yet.
 
 | Symptom | What to try |
 |---------|-------------|
+| Green dot on bubble / update banner | New version available — open panel and click **Update now** |
 | Amber dot on bubble | Open **Settings** and save a Gemini key |
 | “High demand” / busy | Wait and retry — Zenith already retries + switches models |
 | Auth / invalid key | Create a new key in AI Studio and save again |
@@ -263,4 +295,4 @@ An **amber dot** on the bubble means no key is stored yet.
 
 ## License / status
 
-Internal / personal productivity tool · version `0.1.0` · Windows-first (Tauri).
+Public open distribution · Windows-first (Tauri) · Auto-updates via GitHub Releases.

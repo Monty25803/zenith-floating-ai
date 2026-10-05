@@ -14,6 +14,7 @@ import { getApiKey, maskApiKey, setApiKey } from "./lib/apiKey";
 import { placeBubble, placePanel } from "./lib/windowModes";
 
 import { refactorDraft } from "./lib/gemini";
+import { UpdateAlert, useAppUpdater } from "./lib/updater";
 
 const API_KEY_HELP_URL = "https://aistudio.google.com/apikey";
 
@@ -34,6 +35,8 @@ export default function App() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const appWindow = getCurrentWindow();
   const pointerDownAt = useRef<{ x: number; y: number; t: number } | null>(null);
+  const { state: updateState, installUpdate, dismiss: dismissUpdate } =
+    useAppUpdater(true);
 
   useEffect(() => {
     const fromEnv = (import.meta.env.VITE_GEMINI_API_KEY as string | undefined)?.trim();
@@ -195,6 +198,9 @@ export default function App() {
           {!hasKey && (
             <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-amber-400 ring-2 ring-slate-950" />
           )}
+          {hasKey && updateState.status === "available" && (
+            <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-slate-950" />
+          )}
         </button>
       </div>
     );
@@ -248,6 +254,12 @@ export default function App() {
           </button>
         </div>
       </div>
+
+      <UpdateAlert
+        state={updateState}
+        onUpdate={() => void installUpdate()}
+        onDismiss={dismissUpdate}
+      />
 
       {view === "settings" ? (
         <div className="mt-3 flex flex-col flex-grow space-y-3 min-h-0">
