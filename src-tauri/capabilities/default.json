@@ -17,10 +17,16 @@
     "core:window:allow-outer-size",
     "core:window:allow-current-monitor",
     "core:window:allow-available-monitors",
+    "core:tray:default",
+    "core:event:allow-listen",
+    "core:event:allow-unlisten",
     "opener:default",
     "clipboard-manager:allow-write-text",
     "clipboard-manager:allow-read-text",
     "updater:default",
-    "process:default"
+    "process:default",
+    "autostart:allow-enable",
+    "autostart:allow-disable",
+    "autostart:allow-is-enabled"
   ]
 }

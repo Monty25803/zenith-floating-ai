@@ -31,7 +31,11 @@ Support and engineering work often means juggling tickets, email, and chat. Zeni
 
 ## Features
 
-- **Floating bubble** — always on top, draggable, collapses when you close the panel
+- **Floating bubble** — always on top, draggable; click or drag up to expand
+- **Split workspace** — draft on the left, formatted refined reply on the right
+- **Single instance** — launching again focuses the existing bubble (no duplicates)
+- **System tray** — Show / Quit while Zenith stays off the taskbar
+- **Start with Windows** — optional autostart from Settings
 - **One-click refactor** — Gemini rewrites informal notes into client-ready replies
 - **Auto clipboard** — output is copied instantly; **Ctrl+Enter** to run
 - **In-app API key** — paste, save, clear — no `.env` required for day-to-day use
@@ -80,11 +84,13 @@ When a newer release is published, Zenith shows an update alert. Click **Update 
 
 **Layout rules**
 
-1. **Bubble mode** — 64×64 transparent window; icon only (no glow bleed)
-2. **Panel mode** — ~420×560 glass card; drag via header
-3. **One job per view** — write → refactor, or settings → save key
-4. **Minimize / Esc** — returns to the floating bubble
-5. **Quit** — exits Zenith completely (also right-click the bubble)
+1. **Bubble mode** — 64×64 transparent window; icon only (no glow bleed); position remembered
+2. **Panel mode** — ~760×520 glass card; left draft / right refined; drag via header
+3. **Expand** — click bubble, or drag it upward
+4. **Collapse** — Minimize, Esc, or drag the grip under the header downward
+5. **Quit** — confirms before exit (header, tray, or right-click bubble)
+6. **Second launch** — focuses the running instance and pulses the bubble
+7. **Tray** — left-click Show; menu for Show / Quit
 
 ### Visual guide
 
@@ -117,7 +123,7 @@ When a newer release is published, Zenith shows an update alert. Click **Update 
 ┌───────────────────────────▼─────────────────────────────┐
 │  Tauri v2 (Rust)                                        │
 │  · frameless · transparent · alwaysOnTop · skipTaskbar  │
-│  · clipboard-manager · opener                           │
+│  · single-instance · tray · autostart · clipboard · opener │
 └───────────────────────────┬─────────────────────────────┘
                             │  HTTPS REST (your API key)
 ┌───────────────────────────▼─────────────────────────────┐
@@ -228,12 +234,16 @@ Installer output: `src-tauri/target/release/bundle/nsis/`
 | Action | Result |
 |--------|--------|
 | Click floating icon | Opens glass panel |
+| Drag bubble upward | Expand to panel |
+| Drag bubble sideways | Move bubble |
 | **Refactor & Copy** / **Ctrl+Enter** | Gemini polish + clipboard |
-| **Settings** | Paste / save / clear API key |
-| **Minimize** / **Esc** | Back to bubble |
-| **Quit** | Exit Zenith completely |
-| Right-click bubble | Quit |
-| Drag header / bubble | Reposition |
+| **Settings** | API key + Start with Windows |
+| **Minimize** / **Esc** / drag collapse grip down | Back to bubble |
+| **Quit** (confirm) | Exit Zenith completely |
+| Right-click bubble / tray Quit | Quit with confirm |
+| Tray left-click / Show | Focus Zenith |
+| Second desktop/Start launch | Focus existing instance |
+| Drag header / bubble | Reposition (bubble position saved) |
 
 ### Everyday loop
 
