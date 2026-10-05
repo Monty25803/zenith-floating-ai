@@ -395,11 +395,23 @@ export default function App() {
 
   const saveKey = async () => {
     if (!apiKeyDraft.trim()) return;
-    await saveApiKey(apiKeyDraft);
-    setApiKeyDraft("");
-    setApiKeySaved(true);
-    await refreshKeyState();
-    setTimeout(() => setApiKeySaved(false), 2000);
+    try {
+      await saveApiKey(apiKeyDraft);
+      setApiKeyDraft("");
+      await refreshKeyState();
+      const ok = await hasApiKey();
+      if (!ok) {
+        setError("Key did not save to Windows Credential Manager. Try again, or run Zenith as your user account.");
+        setApiKeySaved(false);
+        return;
+      }
+      setApiKeySaved(true);
+      setError("");
+      setTimeout(() => setApiKeySaved(false), 2000);
+    } catch (err) {
+      setApiKeySaved(false);
+      setError(err instanceof Error ? err.message : String(err));
+    }
   };
 
   const clearKey = async () => {

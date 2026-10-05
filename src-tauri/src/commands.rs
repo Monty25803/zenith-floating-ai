@@ -144,11 +144,31 @@ pub fn cancel_refine(gate: State<'_, RefineGate>) -> Result<(), String> {
 }
 
 #[tauri::command]
-pub fn test_api_key() -> Result<String, String> {
-    let key = credentials::load_api_key()?.ok_or("NO_KEY:No API key saved.")?;
-    // Lightweight validation: key shape only; real call happens on refine.
+pub async fn test_api_key() -> Result<String, String> {
+    let key = credentials::load_api_key()?.ok_or("NO_KEY:No API key saved. Paste a key and click Save first.")?;
     if key.len() < 20 {
-        return Err("API key invalid. Open Settings and save a new key.".into());
+        return Err("API key looks too short. Paste the full key from Google AI Studio.".into());
     }
-    Ok("Key is saved in Windows Credential Manager.".into())
+
+    let (_tx, rx) = watch::channel(false);
+    let text = gemini::refine_text(
+        &key,
+        "Say OK",
+        gemini::RefineOptions {
+            preset: Some("concise".into()),
+            custom_instruction: Some("Reply with exactly the word OK.".into()),
+            model: None,
+            action: None,
+            stream: Some(false),
+        },
+        rx,
+        |_, _, _| {},
+    )
+    .await
+    .map_err(|e| e.to_string())?;
+
+    if text.trim().is_empty() {
+        return Err("Gemini returned an empty response. Check the key in AI Studio.".into());
+    }
+    Ok("Key works with Gemini.".into())
 }
