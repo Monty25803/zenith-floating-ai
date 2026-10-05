@@ -146,8 +146,10 @@ An **amber dot** on the orb means no key is saved yet.
 | **Refactor & Copy** / `Ctrl+Enter` | Polish + copy |
 | Minimize / Esc / drag collapse grip | Back to orb |
 | Tray · left-click | Show Zenith |
+| `Ctrl+Alt+Space` | Open / focus panel |
 | **Quit** (header / tray / right-click) | Exit after confirm |
 | Launch again from Start Menu | Focus existing instance |
+| Drag header / bubble | Reposition (bubble position saved) |
 
 ---
 
