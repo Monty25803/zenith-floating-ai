@@ -9,6 +9,7 @@ import {
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { writeText } from "@tauri-apps/plugin-clipboard-manager";
 import { openUrl } from "@tauri-apps/plugin-opener";
+import { exit } from "@tauri-apps/plugin-process";
 import { ZenithMark } from "./brand/ZenithMark";
 import { PanelHeader } from "./components/PanelHeader";
 import { getApiKey, maskApiKey, setApiKey } from "./lib/apiKey";
@@ -73,6 +74,10 @@ export default function App() {
     setError("");
     setView("bubble");
     await placeBubble();
+  };
+
+  const quitApp = async () => {
+    await exit(0);
   };
 
   const openPanel = async () => {
@@ -187,10 +192,15 @@ export default function App() {
       <div className="h-screen w-screen flex items-center justify-center bg-transparent">
         <button
           type="button"
-          aria-label="Open Zenith AI Assistant"
+          aria-label="Open Zenith AI Assistant. Right-click to quit."
+          title="Click to open · Right-click to quit"
           onPointerDown={handleBubblePointerDown}
           onPointerMove={(e) => void handleBubblePointerMove(e)}
           onPointerUp={handleBubblePointerUp}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            void quitApp();
+          }}
           className="zenith-bubble h-[64px] w-[64px] rounded-[22%] flex items-center justify-center cursor-pointer overflow-visible bg-transparent border-0 outline-none p-0"
         >
           <span className="zenith-bubble__lift block h-full w-full rounded-[22%] overflow-hidden">
@@ -212,7 +222,8 @@ export default function App() {
     <div className="zenith-panel">
       <PanelHeader
         subtitle={headerSubtitle}
-        onClose={() => void collapseToBubble()}
+        onMinimize={() => void collapseToBubble()}
+        onQuit={() => void quitApp()}
         onSettings={view === "panel" ? () => void openSettings() : undefined}
         onBack={view === "settings" ? () => setView("panel") : undefined}
       />

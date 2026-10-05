@@ -2,14 +2,16 @@ import { ZenithMark } from "../brand/ZenithMark";
 
 type PanelHeaderProps = {
   subtitle: string;
-  onClose: () => void;
+  onMinimize: () => void;
+  onQuit: () => void;
   onSettings?: () => void;
   onBack?: () => void;
 };
 
 export function PanelHeader({
   subtitle,
-  onClose,
+  onMinimize,
+  onQuit,
   onSettings,
   onBack,
 }: PanelHeaderProps) {
@@ -33,8 +35,21 @@ export function PanelHeader({
             Back
           </button>
         )}
-        <button type="button" className="zenith-btn zenith-btn--ghost" onClick={onClose}>
-          Close
+        <button
+          type="button"
+          title="Collapse to floating icon"
+          className="zenith-btn zenith-btn--ghost"
+          onClick={onMinimize}
+        >
+          Minimize
+        </button>
+        <button
+          type="button"
+          title="Quit Zenith completely"
+          className="zenith-btn zenith-btn--danger"
+          onClick={onQuit}
+        >
+          Quit
         </button>
       </div>
     </header>

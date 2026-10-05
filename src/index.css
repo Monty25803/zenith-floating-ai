@@ -259,14 +259,15 @@ body {
   box-shadow: none;
 }
 
-.zenith-btn--secondary {
-  color: rgb(226 232 240);
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid rgba(71, 85, 105, 0.4);
+.zenith-btn--danger {
+  color: rgb(254 202 202);
+  background: rgba(127, 29, 29, 0.45);
+  border: 1px solid rgba(185, 28, 28, 0.45);
 }
 
-.zenith-btn--secondary:hover {
-  background: rgba(51, 65, 85, 0.9);
+.zenith-btn--danger:hover {
+  color: #fff;
+  background: rgba(153, 27, 27, 0.75);
 }
 
 .zenith-btn__spinner {

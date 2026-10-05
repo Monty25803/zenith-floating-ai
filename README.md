@@ -83,7 +83,8 @@ When a newer release is published, Zenith shows an update alert. Click **Update 
 1. **Bubble mode** — 64×64 transparent window; icon only (no glow bleed)
 2. **Panel mode** — ~420×560 glass card; drag via header
 3. **One job per view** — write → refactor, or settings → save key
-4. **Close / Esc** — always returns to the floating bubble
+4. **Minimize / Esc** — returns to the floating bubble
+5. **Quit** — exits Zenith completely (also right-click the bubble)
 
 ### Visual guide
 
@@ -229,7 +230,9 @@ Installer output: `src-tauri/target/release/bundle/nsis/`
 | Click floating icon | Opens glass panel |
 | **Refactor & Copy** / **Ctrl+Enter** | Gemini polish + clipboard |
 | **Settings** | Paste / save / clear API key |
-| **Close** / **Esc** | Back to bubble |
+| **Minimize** / **Esc** | Back to bubble |
+| **Quit** | Exit Zenith completely |
+| Right-click bubble | Quit |
 | Drag header / bubble | Reposition |
 
 ### Everyday loop
