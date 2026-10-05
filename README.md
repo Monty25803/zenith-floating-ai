@@ -1,314 +1,216 @@
 <p align="center">
-  <img src="public/zenith-wordmark.png" alt="Zenith — The peak of your productivity stack" width="420" />
-</p>
-
-<h1 align="center">Zenith Floating AI Assistant</h1>
-
-<p align="center">
-  <strong>Click. Rewrite. Paste.</strong><br />
-  A always-on-top Windows bubble that turns rough notes into polished support replies via Google Gemini.
+  <img src="public/zenith-orb-pro.svg" alt="Zenith orb" width="96" height="96" />
 </p>
 
 <p align="center">
-  <img src="public/zenith-icon.png" alt="Zenith icon" width="72" height="72" />
+  <img src="public/zenith-wordmark.png" alt="Zenith — The peak of your productivity stack" width="380" />
+</p>
+
+<h1 align="center">Zenith</h1>
+
+<p align="center">
+  <strong>The floating AI assistant for support &amp; engineering replies.</strong><br />
+  Always on top. One click. Rough notes in — polished copy on your clipboard.
+</p>
+
+<p align="center">
+  <a href="https://github.com/Monty25803/zenith-floating-ai/releases/latest"><img src="https://img.shields.io/github/v/release/Monty25803/zenith-floating-ai?style=flat-square&label=Download&color=7C3AED" alt="Latest release" /></a>
+  <img src="https://img.shields.io/badge/Windows-10%2F11-0f172a?style=flat-square" alt="Windows" />
+  <img src="https://img.shields.io/badge/Built%20with-Tauri%20v2-24C8DB?style=flat-square" alt="Tauri" />
+  <img src="https://img.shields.io/badge/AI-Google%20Gemini-4285F4?style=flat-square" alt="Gemini" />
+  <img src="https://img.shields.io/badge/Privacy-Key%20stays%20local-059669?style=flat-square" alt="Privacy" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/Monty25803/zenith-floating-ai/releases/latest"><strong>Download for Windows →</strong></a>
+  ·
+  <a href="https://aistudio.google.com/apikey">Get a free Gemini API key</a>
+  ·
+  <a href="#how-it-works">How it works</a>
 </p>
 
 ---
 
-## What it does
+## Why Zenith
 
-Support and engineering work often means juggling tickets, email, and chat. Zenith sits as a small floating icon on your desktop. Click it, dump rough notes, hit **Refactor & Copy** — get a clear, professional reply on the clipboard, ready to paste.
+You already live in tickets, email, and chat. Zenith does not send you to another browser tab.
 
-| Without Zenith | With Zenith |
-|----------------|-------------|
-| Rewrite the same reply 3 times | One rough draft → polished text |
-| Switch to a browser AI tab | Stay in your ticket / email flow |
-| Copy/paste gymnastics | Auto-copy on every refactor |
+It sits as a **glass orb on your desktop**. Click it, dump messy notes, press **Refactor & Copy** — a clear, client-ready reply is copied instantly.
 
-**No global hotkey.** No backend. Your Gemini API key lives only on your PC (Settings UI → local storage).
+| Before | With Zenith |
+| --- | --- |
+| Rewrite the same reply three times | One draft → polished text |
+| Alt-tab to a chat AI | Stay in your workflow |
+| Copy / paste gymnastics | Auto-copy every time |
+| Hotkeys to memorize | Click the orb |
+
+**No backend. No account with us.** Your Gemini key never leaves this PC.
+
+---
+
+## Product tour
+
+<p align="center">
+  <img src="docs/screenshots/01-floating-bubble.png" alt="Floating Zenith bubble on the desktop" width="720" />
+</p>
+
+<p align="center"><em>Always-on-top orb — drag to move, click or drag up to open.</em></p>
+
+<p align="center">
+  <img src="docs/screenshots/02-main-panel.png" alt="Zenith split panel with draft and refined output" width="720" />
+</p>
+
+<p align="center"><em>Split workspace — draft on the left, refined reply on the right.</em></p>
+
+<p align="center">
+  <img src="docs/screenshots/03-api-settings.png" alt="Zenith Settings with Gemini API key" width="720" />
+</p>
+
+<p align="center"><em>Settings — paste your Gemini key once. Optional Start with Windows.</em></p>
+
+---
+
+## How it works
+
+1. **Install** Zenith and leave the orb running.
+2. **Open** it when you need a reply — paste rough notes.
+3. **Refactor & Copy** — paste (`Ctrl+V`) into your ticket, email, or chat.
+
+That’s the whole loop. Minimize (or Esc) to tuck it away as a bubble again.
 
 ---
 
 ## Features
 
-- **Floating bubble** — always on top, draggable; click or drag up to expand
-- **Split workspace** — draft on the left, formatted refined reply on the right
-- **Single instance** — launching again focuses the existing bubble (no duplicates)
-- **System tray** — Show / Quit while Zenith stays off the taskbar
-- **Start with Windows** — optional autostart from Settings
-- **One-click refactor** — Gemini rewrites informal notes into client-ready replies
-- **Auto clipboard** — output is copied instantly; **Ctrl+Enter** to run
-- **In-app API key** — paste, save, clear — no `.env` required for day-to-day use
-- **Resilient AI calls** — retries + model fallbacks when Google is overloaded
-- **Tiny desktop footprint** — Tauri (~15–20 MB class) vs Electron-heavy shells
-- **Windows installer releases** — every push to `main` publishes a `.exe` setup on GitHub Releases
-- **In-app update alerts** — installed apps detect new releases and offer **Update now**
+| | |
+| --- | --- |
+| **Floating orb** | Always on top, draggable, position remembered |
+| **Split panel** | Draft left · refined output right |
+| **One-click polish** | Gemini rewrite + auto clipboard · `Ctrl+Enter` |
+| **Single instance** | Second launch focuses the existing app — no duplicate orbs |
+| **System tray** | Show / Quit without cluttering the taskbar |
+| **Start with Windows** | Optional autostart from Settings |
+| **In-app updates** | Update alerts when a new installer ships |
+| **Lightweight** | Tauri native shell — small footprint vs Electron |
 
 ---
 
-## Install (Windows users)
+## Install (Windows)
 
-Anyone can install Zenith from the public Releases page — **do not** run a raw binary from a zip.
-
-1. Open **[Releases](https://github.com/Monty25803/zenith-floating-ai/releases/latest)**
+1. Open **[Releases → Latest](https://github.com/Monty25803/zenith-floating-ai/releases/latest)**
 2. Download **`Zenith_*_x64-setup.exe`**
-3. Run the installer (Current User install)
-4. Launch **Zenith** from the Start Menu — a floating bubble appears
+3. Run the installer (Current User)
+4. Launch **Zenith** from the Start Menu
 
-When a newer release is published, Zenith shows an update alert. Click **Update now** to download the new setup and restart.
+When a new version ships, Zenith shows an update banner — click **Update now**.
 
----
-
-## Design
-
-### Brand
-
-| Asset | Use |
-|-------|-----|
-| ![icon](public/zenith-icon.png) | Panel header, favicon, Windows installer icons |
-| ![orb](public/zenith-orb-pro.svg) | Floating bubble logo |
-| ![wordmark](public/zenith-wordmark.png) | Docs, marketing, README |
-
-- **Mark** — purple squircle with three rising chevrons (“peak”)
-- **Orb** — glass sphere mark for the always-on-top bubble
-- **Wordmark** — *Zenith* + tagline *The peak of your productivity stack*
-- Rebuild OS icons after logo changes: `npm run icons:all`
-
-### UI language
-
-| Token | Value | Role |
-|-------|-------|------|
-| Peak purple | `#7C3AED` | Brand tile, primary actions |
-| Soft violet | `#A78BFA` / `#C4B5FD` | Accents, secondary chevrons |
-| Slate glass | `slate-900` @ ~85% + blur | Panel surface |
-| Ink / muted | white / `slate-400` | Titles and helper text |
-| Amber | warning dot | API key missing on bubble |
-
-**Layout rules**
-
-1. **Bubble mode** — 64×64 transparent window; icon only (no glow bleed); position remembered
-2. **Panel mode** — ~760×520 glass card; left draft / right refined; drag via header
-3. **Expand** — click bubble, or drag it upward
-4. **Collapse** — Minimize, Esc, or drag the grip under the header downward
-5. **Quit** — confirms before exit (header, tray, or right-click bubble)
-6. **Second launch** — focuses the running instance and pulses the bubble
-7. **Tray** — left-click Show; menu for Show / Quit
-
-### Visual guide
-
-**1. Floating bubble** — always on top; click to open
-
-![Floating bubble](docs/screenshots/01-floating-bubble.png)
-
-**2. Main panel** — rough notes in, polished reply out
-
-![Main panel](docs/screenshots/02-main-panel.png)
-
-**3. API settings** — save your Gemini key in the app UI
-
-![API settings](docs/screenshots/03-api-settings.png)
-
-**4. Get an API key** — Google AI Studio
-
-![Get API key](docs/screenshots/04-get-api-key.png)
+> Prefer building from source? See [Developers](#developers) below.
 
 ---
 
-## Tech stack
+## Set up your Gemini key
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│  React 19 + TypeScript + Vite 6 + Tailwind CSS 4        │
-│  (glass UI · bubble / panel / settings)                 │
-└───────────────────────────┬─────────────────────────────┘
-                            │  @tauri-apps/api
-┌───────────────────────────▼─────────────────────────────┐
-│  Tauri v2 (Rust)                                        │
-│  · frameless · transparent · alwaysOnTop · skipTaskbar  │
-│  · single-instance · tray · autostart · clipboard · opener │
-└───────────────────────────┬─────────────────────────────┘
-                            │  HTTPS REST (your API key)
-┌───────────────────────────▼─────────────────────────────┐
-│  Google Gemini                                          │
-│  gemini-3.8-flash → 3.5-flash → 3.5-flash-lite          │
-│  (+ retries on high demand / rate limit)                │
-└─────────────────────────────────────────────────────────┘
-```
+Zenith talks to Google Gemini with **your** API key.
 
-| Layer | Choice | Why |
-|-------|--------|-----|
-| Shell | **Tauri v2** | Small native Windows app, transparent overlay windows |
-| UI | **React 19 + TS** | Typed, fast iteration for a single-panel UX |
-| Bundler | **Vite 6** | Instant HMR during `tauri dev` |
-| Styles | **Tailwind CSS 4** | Utility-first glassmorphism without a heavy design system |
-| Clipboard | `@tauri-apps/plugin-clipboard-manager` | Reliable system paste after refactor |
-| Links | `@tauri-apps/plugin-opener` | Open AI Studio from Settings |
-| AI | **Gemini REST** | Direct from UI — no Zenith backend |
-| Icons | **sharp** + `tauri icon` | PNG → Windows `.ico` / installer assets |
+1. Create a key in **[Google AI Studio](https://aistudio.google.com/apikey)** (free tier available).
+2. In Zenith: open the panel → **Settings** → paste → **Save key**.
+3. Go **Back** and try **Refactor & Copy**.
 
-### Project layout
+<p align="center">
+  <img src="docs/screenshots/04-get-api-key.png" alt="Create an API key in Google AI Studio" width="640" />
+</p>
 
-```text
-Zenith App/
-├── src/
-│   ├── App.tsx                 # Bubble ↔ panel ↔ settings
-│   ├── brand/ZenithMark.tsx    # Logo component
-│   ├── lib/
-│   │   ├── apiKey.ts           # LocalStorage key helpers
-│   │   ├── gemini.ts           # Model chain + retries
-│   │   ├── updater.tsx         # Update check + alert UI
-│   │   └── windowModes.ts      # Bubble / panel geometry
-│   ├── index.css               # Transparent root + bubble motion
-│   └── main.tsx
-├── .github/workflows/
-│   └── release-windows.yml     # Build + publish setup.exe on push
-├── src-tauri/
-│   ├── tauri.conf.json         # Overlay window config
-│   ├── capabilities/           # Clipboard, window, opener ACL
-│   └── icons/                  # Generated OS icons
-├── public/
-│   ├── zenith-orb-pro.svg      # Floating bubble orb
-│   ├── zenith-icon.png         # Peak mark (panel / installer)
-│   └── zenith-wordmark.png     # Full logo
-├── docs/screenshots/           # README visuals (SVG)
-└── scripts/generate-app-icon.mjs
-```
+An **amber dot** on the orb means no key is saved yet.
+
+### Privacy
+
+- The key is stored **only on this device** (local storage).
+- Zenith has **no server** that receives your key or drafts.
+- Treat the key like a password — never commit it. Use **Clear** in Settings anytime.
 
 ---
 
-## Quick start
+## Controls
+
+| Action | Result |
+| --- | --- |
+| Click orb | Open panel |
+| Drag orb up | Expand to panel |
+| Drag orb sideways | Move |
+| **Refactor & Copy** / `Ctrl+Enter` | Polish + copy |
+| Minimize / Esc / drag collapse grip | Back to orb |
+| Tray · left-click | Show Zenith |
+| **Quit** (header / tray / right-click) | Exit after confirm |
+| Launch again from Start Menu | Focus existing instance |
+
+---
+
+## Developers
+
+### Stack
+
+**React 19 · TypeScript · Vite 6 · Tailwind 4 · Tauri v2 · Gemini REST**
+
+Models (with fallback): `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.5-flash-lite`
 
 ### Prerequisites
 
-| Tool | Notes |
-|------|--------|
-| [Node.js](https://nodejs.org/) 20+ | Frontend + Tauri CLI |
-| [Rust](https://rustup.rs/) (stable) | Native shell |
-| VS Build Tools | **Desktop development with C++** workload (Windows) |
-| WebView2 | Usually preinstalled on Windows 10/11 |
-| [Gemini API key](https://aistudio.google.com/apikey) | Free tier; set inside the app |
+- [Node.js](https://nodejs.org/) 20+
+- [Rust](https://rustup.rs/) (stable)
+- Visual Studio Build Tools — **Desktop development with C++**
+- WebView2 (usually preinstalled on Windows 10/11)
+- A [Gemini API key](https://aistudio.google.com/apikey)
 
-### Develop
+### Run locally
 
 ```bash
 npm install
 npm run tauri dev
 ```
 
-A purple peak bubble appears (typically bottom-right). **Drag** to move · **Click** to open.
-
-### Ship / release (maintainers)
-
-Every push to `main` runs GitHub Actions (`.github/workflows/release-windows.yml`):
-
-1. Bumps version to `0.1.<run_number>`
-2. Builds a Windows **NSIS** installer (`*-setup.exe`)
-3. Signs updater artifacts
-4. Publishes a GitHub Release with `latest.json` for auto-update
-
-Required repo secrets:
-
-| Secret | Purpose |
-|--------|---------|
-| `TAURI_SIGNING_PRIVATE_KEY` | Private key from `npm run tauri signer generate` |
-| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | Key password (empty string if none) |
-
-Local production build (optional):
-
 ```bash
-npm run tauri build -- --bundles nsis
+npm run build              # frontend only
+npm run tauri build        # production bundles
+npm run icons:all          # refresh OS icons from brand assets
 ```
 
-Installer output: `src-tauri/target/release/bundle/nsis/`
+### Releases (maintainers)
 
-### Scripts
+Every push to `main` builds an NSIS `*-setup.exe`, signs updater artifacts, and publishes a GitHub Release with `latest.json`.
 
-| Command | Purpose |
-|---------|---------|
-| `npm run tauri dev` | Dev app + Vite HMR |
-| `npm run tauri build` | Production MSI / NSIS |
-| `npm run build` | Frontend-only TypeScript + Vite build |
-| `npm run icons:all` | Refresh `app-icon-source.png` + all OS icons |
-
----
-
-## How to use
-
-| Action | Result |
-|--------|--------|
-| Click floating icon | Opens glass panel |
-| Drag bubble upward | Expand to panel |
-| Drag bubble sideways | Move bubble |
-| **Refactor & Copy** / **Ctrl+Enter** | Gemini polish + clipboard |
-| **Settings** | API key + Start with Windows |
-| **Minimize** / **Esc** / drag collapse grip down | Back to bubble |
-| **Quit** (confirm) | Exit Zenith completely |
-| Right-click bubble / tray Quit | Quit with confirm |
-| Tray left-click / Show | Focus Zenith |
-| Second desktop/Start launch | Focus existing instance |
-| Drag header / bubble | Reposition (bubble position saved) |
-
-### Everyday loop
-
-1. Leave Zenith running (bubble stays on top).
-2. In a ticket or email, click the bubble.
-3. Paste rough notes → **Refactor & Copy**.
-4. Paste (`Ctrl+V`) into your tool.
-5. Close — bubble waits for the next reply.
-
----
-
-## Gemini API key (full guide)
-
-### Get a key
-
-1. Open **[Google AI Studio → API keys](https://aistudio.google.com/apikey)**  
-   (or **Get API key** inside Zenith Settings).
-2. Sign in with Google.
-3. **Create API key** (pick / create a Cloud project if asked).
-4. **Copy** the key.
-
-![Get API key](docs/screenshots/04-get-api-key.png)
-
-### Save it in Zenith
-
-1. Click the floating icon → **Settings**.
-2. Paste into **Gemini API key** → **Save key**.
-3. **Back** → try **Refactor & Copy**.
-
-An **amber dot** on the bubble means no key is stored yet.
-
-### Safety
-
-- Treat the key like a password — never commit it or paste it into public chats.
-- Storage is **local only** (this machine). Zenith has no server that receives your key.
-- **Clear** anytime from Settings; rotate the key in AI Studio if it leaks.
-- Usage follows Google’s free-tier / billing rules for your account.
-
----
-
-## Architecture notes
-
-- **Window** — frameless, transparent, `alwaysOnTop`, `skipTaskbar`; resizes between bubble and panel.
-- **AI path** — browser `fetch` to Generative Language API with the key from local storage.
-- **Fallback chain** — `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.5-flash-lite`, with backoff on 429/503 / “high demand”.
-- **System prompt** — support/dev rewrite only; returns refined text with no chatty preamble.
+| Secret | Purpose |
+| --- | --- |
+| `TAURI_SIGNING_PRIVATE_KEY` | From `npm run tauri signer generate` |
+| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | Key password (empty string if none) |
 
 ---
 
 ## Troubleshooting
 
-| Symptom | What to try |
-|---------|-------------|
-| Green dot on bubble / update banner | New version available — open panel and click **Update now** |
-| Amber dot on bubble | Open **Settings** and save a Gemini key |
-| “High demand” / busy | Wait and retry — Zenith already retries + switches models |
-| Auth / invalid key | Create a new key in AI Studio and save again |
-| Bubble missing after launch | Check the taskbar-less always-on-top corner; restart `tauri dev` |
-| Build fails (Rust / MSVC) | Install Rust + VS C++ workload; reopen the terminal |
+| Symptom | Fix |
+| --- | --- |
+| Amber dot on orb | Save a Gemini key in **Settings** |
+| Green dot / update banner | Open panel → **Update now** |
+| Busy / high demand | Wait and retry — Zenith already retries + switches models |
+| Invalid API key | Create a new key in AI Studio and save again |
+| Can’t find the orb | Check bottom-right / tray · Show Zenith |
+| Build fails (Rust / MSVC) | Install Rust + VS C++ workload, reopen the terminal |
 
 ---
 
-## License / status
+## Brand
 
-Public open distribution · Windows-first (Tauri) · Auto-updates via GitHub Releases.
+| Asset | Use |
+| --- | --- |
+| [zenith-orb-pro.svg](public/zenith-orb-pro.svg) | Floating bubble |
+| [zenith-icon.png](public/zenith-icon.png) | Panel mark · installer icons |
+| [zenith-wordmark.png](public/zenith-wordmark.png) | Docs & marketing |
+
+*The peak of your productivity stack.*
+
+---
+
+<p align="center">
+  <strong>Zenith</strong> · Windows-first · Open distribution · Updates via GitHub Releases<br />
+  <a href="https://github.com/Monty25803/zenith-floating-ai/releases/latest">Download the latest setup.exe</a>
+</p>
