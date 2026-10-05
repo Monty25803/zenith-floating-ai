@@ -65,10 +65,12 @@ When a newer release is published, Zenith shows an update alert. Click **Update 
 
 | Asset | Use |
 |-------|-----|
-| ![icon](public/zenith-icon.png) | Floating bubble, favicon, Windows installer icons |
+| ![icon](public/zenith-icon.png) | Panel header, favicon, Windows installer icons |
+| ![orb](public/zenith-orb-pro.svg) | Floating bubble logo |
 | ![wordmark](public/zenith-wordmark.png) | Docs, marketing, README |
 
 - **Mark** — purple squircle with three rising chevrons (“peak”)
+- **Orb** — glass sphere mark for the always-on-top bubble
 - **Wordmark** — *Zenith* + tagline *The peak of your productivity stack*
 - Rebuild OS icons after logo changes: `npm run icons:all`
 
@@ -165,7 +167,8 @@ Zenith App/
 │   ├── capabilities/           # Clipboard, window, opener ACL
 │   └── icons/                  # Generated OS icons
 ├── public/
-│   ├── zenith-icon.png         # Peak mark
+│   ├── zenith-orb-pro.svg      # Floating bubble orb
+│   ├── zenith-icon.png         # Peak mark (panel / installer)
 │   └── zenith-wordmark.png     # Full logo
 ├── docs/screenshots/           # README visuals (SVG)
 └── scripts/generate-app-icon.mjs

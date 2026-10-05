@@ -306,10 +306,13 @@ export default function App() {
               setQuitOpen(true);
             })();
           }}
-          className={`zenith-bubble h-[64px] w-[64px] rounded-[22%] flex items-center justify-center cursor-pointer overflow-visible bg-transparent border-0 outline-none p-0 ${bubblePulse ? "zenith-bubble--pulse" : ""}`}
+          className={`zenith-bubble h-[64px] w-[64px] rounded-full flex items-center justify-center cursor-pointer overflow-visible bg-transparent border-0 outline-none p-0 ${bubblePulse ? "zenith-bubble--pulse" : ""}`}
         >
-          <span className="zenith-bubble__lift block h-full w-full rounded-[22%] overflow-hidden">
-            <ZenithMark className="h-full w-full rounded-[22%] pointer-events-none" />
+          <span className="zenith-bubble__lift block h-full w-full rounded-full overflow-hidden">
+            <ZenithMark
+              variant="orb"
+              className="h-full w-full rounded-full pointer-events-none"
+            />
           </span>
           {!hasKey && <span className="zenith-bubble__dot zenith-bubble__dot--warn" />}
           {hasKey && updateState.status === "available" && (
