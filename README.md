@@ -121,7 +121,7 @@ When a newer release is published, Zenith shows an update alert. Click **Update 
                             │  HTTPS REST (your API key)
 ┌───────────────────────────▼─────────────────────────────┐
 │  Google Gemini                                          │
-│  gemini-3.8-flash → 2.5-flash → 2.5-flash-lite          │
+│  gemini-3.8-flash → 3.5-flash → 3.5-flash-lite          │
 │  (+ retries on high demand / rate limit)                │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -275,7 +275,7 @@ An **amber dot** on the bubble means no key is stored yet.
 
 - **Window** — frameless, transparent, `alwaysOnTop`, `skipTaskbar`; resizes between bubble and panel.
 - **AI path** — browser `fetch` to Generative Language API with the key from local storage.
-- **Fallback chain** — `gemini-3.8-flash` → `gemini-2.5-flash` → `gemini-2.5-flash-lite`, with backoff on 429/503 / “high demand”.
+- **Fallback chain** — `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.5-flash-lite`, with backoff on 429/503 / “high demand”.
 - **System prompt** — support/dev rewrite only; returns refined text with no chatty preamble.
 
 ---

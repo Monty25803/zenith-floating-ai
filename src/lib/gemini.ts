@@ -3,8 +3,8 @@ const SYSTEM_PROMPT = `You are an expert technical support engineer and develope
 /** Primary first; fallbacks when a model is overloaded or unavailable. */
 export const GEMINI_MODELS = [
   "gemini-3.8-flash",
-  "gemini-2.5-flash",
-  "gemini-2.5-flash-lite",
+  "gemini-3.5-flash",
+  "gemini-3.5-flash-lite",
 ] as const;
 
 const MAX_ATTEMPTS_PER_MODEL = 3;
@@ -49,6 +49,7 @@ function isModelUnavailable(status: number, message: string): boolean {
   if (status === 404) return true;
   return (
     lower.includes("no longer available") ||
+    lower.includes("please update your code") ||
     lower.includes("not found") ||
     lower.includes("is not supported")
   );
@@ -56,8 +57,15 @@ function isModelUnavailable(status: number, message: string): boolean {
 
 function friendlyError(status: number, message: string): string {
   const lower = message.toLowerCase();
+  if (
+    lower.includes("no longer available") ||
+    lower.includes("please update your code") ||
+    lower.includes("not found")
+  ) {
+    return "That Gemini model is not available for this API key. Try again - Zenith uses the latest Flash models.";
+  }
   if (lower.includes("high demand") || status === 503) {
-    return "Gemini is busy right now. Zenith retried and tried backup models — wait a moment and click Refactor & Copy again.";
+    return "Gemini is busy right now. Zenith retried and tried backup models - wait a moment and click Refactor & Copy again.";
   }
   if (status === 429) {
     return "Rate limit hit. Wait a few seconds and try again.";
