@@ -63,8 +63,7 @@ pub async fn refine_text(
     draft: String,
     options: RefineOptions,
 ) -> Result<String, String> {
-    let api_key = credentials::load_api_key()
-        .map_err(|e| e)?
+    let api_key = credentials::load_api_key()?
         .ok_or_else(|| gemini::RefineError::NoKey.to_string())?;
 
     let (tx, rx) = watch::channel(false);
